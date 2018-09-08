@@ -1,0 +1,22 @@
+{
+  "name": "newusersfeed",
+  "version": "1.0.0",
+  "description": "Reports user creations on FANDOM to freenode",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ty-a/newusersfeed.git"
+  },
+  "author": "TyA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ty-a/newusersfeed/issues"
+  },
+  "homepage": "https://github.com/ty-a/newusersfeed#readme",
+  "dependencies": {
+    "irc": "^0.5.2"
+  }
+}

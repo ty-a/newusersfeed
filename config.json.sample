@@ -1,0 +1,11 @@
+{
+  "sourceirchost": "",
+  "sourceircport": "",
+  "commandirchost": "irc.freenode.net",
+  "trigger": "~",
+  "sourceNick": "tywusers",
+  "commandnick": "tybot",
+  "realname": "tybot",
+  "nickservuser": "tybot",
+  "nickservpass": ""
+}
