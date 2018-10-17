@@ -100,7 +100,7 @@ wikianet.addListener("message", function(nick, to, text, message) {
   );
   var out = irc.colors.wrap("dark_green", user);
   out += " New user registration ";
-  out += irc.colors.wrap("cyan", "http://" + wiki + ".wikia.com/wiki/Special:Log/newusers - http://" + wiki + ".wikia.com/wiki/Special:Contributions/" + user);
+  out += irc.colors.wrap("cyan", "http://" + wiki + ".wikia.com/wiki/Special:Log/newusers - http://" + wiki + ".wikia.com/wiki/Special:Contributions/" + encodeURIComponent(user));
   freenode.say("#tybot", out);
 
 });
