@@ -2,6 +2,7 @@ var config = require("./config.json");
 var irc = require("irc");
 var fs = require("fs");
 
+var outChannel = "#cvn-wikia-newusers";
 var wikianet = new irc.Client(
   config.sourceirchost,
   config.sourceNick,
@@ -24,7 +25,7 @@ var freenode = new irc.Client(
   config.commandnick,
   {
     channels: [
-      "#cvn-wikia-newusers"
+      outChannel
     ],
     sasl: false,
     retryCount: 15,
@@ -87,8 +88,13 @@ wikianet.addListener("message", function(nick, to, text, message) {
   var wiki;
   [user, wiki] = text.split(" New user registration ");
   var end;
+  var isUsingFandom = false;
   if(wiki.indexOf(".wikia") == -1) {
-    end = wiki.indexOf(".fandom")
+    // grab the /wiki/ so that we can get the langcode as well
+    end = wiki.indexOf("/wiki/");
+    isUsingFandom = true;
+    // [10:41:42] <registrations> DrewMan336 New user registration http://fairytail.fandom.com/ru/wiki/Special:Log/newusers
+
   } else {
     end = wiki.indexOf(".wikia")
   }
@@ -96,11 +102,16 @@ wikianet.addListener("message", function(nick, to, text, message) {
   wiki = wiki.substring(
     wiki.indexOf("://") + 3,
     end
-
   );
+
   var out = irc.colors.wrap("dark_green", user);
   out += " New user registration ";
-  out += irc.colors.wrap("cyan", "http://" + wiki + ".wikia.com/wiki/Special:Log/newusers - http://" + wiki + ".wikia.com/wiki/Special:Contributions/" + encodeURIComponent(user));
-  freenode.say("#tybot", out);
+  if(isUsingFandom) {
+    out += irc.colors.wrap("cyan", "https://" + wiki + "/wiki/Special:Log/newusers - http://" + wiki + "/wiki/Special:Contributions/" + encodeURIComponent(user));
+  } else {
+    out += irc.colors.wrap("cyan", "https://" + wiki + ".wikia.com/wiki/Special:Log/newusers - http://" + wiki + ".wikia.com/wiki/Special:Contributions/" + encodeURIComponent(user));
+  }
+
+  freenode.say(outChannel, out);
 
 });
