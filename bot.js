@@ -107,9 +107,9 @@ wikianet.addListener("message", function(nick, to, text, message) {
   var out = irc.colors.wrap("dark_green", user);
   out += " New user registration ";
   if(isUsingFandom) {
-    out += irc.colors.wrap("cyan", "https://" + wiki + "/wiki/Special:Log/newusers - http://" + wiki + "/wiki/Special:Contributions/" + encodeURIComponent(user));
+    out += irc.colors.wrap("cyan", "https://" + wiki + "/wiki/Special:Log/newusers - https://" + wiki + "/wiki/Special:Contributions/" + encodeURIComponent(user));
   } else {
-    out += irc.colors.wrap("cyan", "https://" + wiki + ".wikia.com/wiki/Special:Log/newusers - http://" + wiki + ".wikia.com/wiki/Special:Contributions/" + encodeURIComponent(user));
+    out += irc.colors.wrap("cyan", "https://" + wiki + ".wikia.com/wiki/Special:Log/newusers - https://" + wiki + ".wikia.com/wiki/Special:Contributions/" + encodeURIComponent(user));
   }
 
   freenode.say(outChannel, out);
