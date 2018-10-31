@@ -81,7 +81,7 @@ freenode.addListener("message", function(nick, to, text, message) {
 });
 
 wikianet.addListener("message", function(nick, to, text, message) {
-  if(nick != "registrations") {
+  if(!nick.startsWith("registrations")) {
     return;
   }
   var user;
